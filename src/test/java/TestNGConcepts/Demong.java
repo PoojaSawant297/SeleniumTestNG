@@ -6,7 +6,7 @@ public class Demong {
 	@Test
 	
 	public void method () {
-		System.out.print("Hello");
+		System.out.print("Hello ");
 	}
 
 }

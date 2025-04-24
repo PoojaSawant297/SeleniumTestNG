@@ -7,90 +7,99 @@ import org.openqa.selenium.WebElement;
 public class registerPageObjects {
 
 	public WebDriver driver;
-	
-	private  By firstname = By.xpath("//input[@name='firstname']");
-	
-	private  By lastname = By.xpath("//input[@name='lastname']");
-	
-	private  By email = By.xpath("//input[@name='email']");
-	
-	private By telephone = By.xpath("//input[@name='telephone']");
-	
-	private By password = By.xpath("//input[@name='password']");
-	
-	private By confirmPassword = By.xpath("//input[@name='confirm']");
-	
-	private By checkbox = By.xpath("//input[@type='checkbox']");
-	
-	private By continuebutton = By.xpath("//input[@type='submit']");
-	
-	private By registersuccessfully = By.xpath("//h1[text()='Your Account Has Been Created!']");
-	
-	
 
-	
-	
+	private By FirstName = By.xpath("//input[@name='firstname']");
+	private By LastName = By.xpath("//input[@name='lastname']");
+	private By Email = By.xpath("//input[@name='email']");
+	private By Telephone = By.xpath("//input[@name='telephone']");
+	private By Password = By.xpath("//input[@name='password']");
+	private By ConfirmPassword = By.xpath("//input[@name='confirm']");
+	private By Checkbox = By.xpath("//input[@name='agree']");
+	private By Logout = By.xpath("//a[@class='list-group-item' and contains(text(), 'Logout')]");
+	private By ContinueButton = By.xpath("//input[@value='Continue']");
+//	private By RegisteredSucceessfully = By.xpath("//h1[text()='Your Account Has Been Created!']");
 
-	
-	//Add the remaining xpath
-	
-	//Add the error message xpath also
-	
-	
+	private By RegistrationFirstNameErrorMessage = By
+			.xpath("//div[text()='First Name must be between 1 and 32 characters!']");
+	private By RegistrationLastNameErrorMessage = By
+			.xpath("//div[text()='Last Name must be between 1 and 32 characters!']");
+	private By RegistrationEmailErrorMessage = By.xpath("//div[text()='E-Mail Address does not appear to be valid!']");
+	private By RegistrationTelephoneErrorMessage = By
+			.xpath("//div[text()='Telephone must be between 3 and 32 characters!']");
+	private By RegistrationPasswordErrorMessage = By
+			.xpath("//div[text()='Password must be between 4 and 20 characters!']");
+	private By RegistrationCheckBoxErrorMessage = By
+			.xpath("//div[text()=' Warning: You must agree to the Privacy Policy!']");
+
 	public registerPageObjects(WebDriver driver) {
 		this.driver = driver;
 	}
 
+	public WebElement EnterFirstName() {
+		return driver.findElement(FirstName);
 
-	public WebElement enterFirstName() {
-		
-		return driver.findElement(firstname);
-		
 	}
-	
-	public WebElement enterLastName() {
-		
-		return driver.findElement(lastname);
-		
+
+	public WebElement EnterLastName() {
+		return driver.findElement(LastName);
 	}
-	
-	public WebElement enterEmail() {
-		return driver.findElement(email);
-		
+
+	public WebElement EnterEmail() {
+		return driver.findElement(Email);
+
 	}
-	
-	public WebElement enterTelephone() {
-		return driver.findElement(telephone);
-		
+
+	public WebElement EnterTelephone() {
+		return driver.findElement(Telephone);
 	}
-	 
-	public WebElement Password() {
-		return driver.findElement(password);
-		
+
+	public WebElement EnterPassword() {
+		return driver.findElement(Password);
 	}
-	
-	public WebElement confirmPassword() {
-		return driver.findElement(confirmPassword);
-		
+
+	public WebElement EnterConfirmPassword() {
+		return driver.findElement(ConfirmPassword);
 	}
-	
-	public WebElement clickCheckbox() {
-		return driver.findElement(checkbox);
-		
+
+	public WebElement CheckCheckbox() {
+		return driver.findElement(Checkbox);
 	}
-	
-	public WebElement conntinueButton() {
-		return driver.findElement(continuebutton);
-		
+
+	public WebElement ClickContinue() {
+		return driver.findElement(ContinueButton);
 	}
-	
-	
-	public WebElement registersuccessful () {
-		return driver.findElement(registersuccessfully);
-		
+
+	public WebElement LogoutButton() {
+		return driver.findElement(Logout);
 	}
-	//Add the reaming methods 
-	 
-	
+
+//	public WebElement RegisteredSuccessfullyMessage() {
+//		return driver.findElement(RegisteredSucceessfully);
+//	}
+
+	public WebElement FirstNameErrorMessage() {
+		return driver.findElement(RegistrationFirstNameErrorMessage);
+	}
+
+	public WebElement LastNameErrorMessage() {
+		return driver.findElement(RegistrationLastNameErrorMessage);
+	}
+
+	public WebElement EmailErrorMessage() {
+		return driver.findElement(RegistrationEmailErrorMessage);
+	}
+
+	public WebElement TelePhoneErrorMessage() {
+		return driver.findElement(RegistrationTelephoneErrorMessage);
+	}
+
+	public WebElement PasswordErrorMessage() {
+		return driver.findElement(RegistrationPasswordErrorMessage);
+	}
+
+	public WebElement CheckBoxErrorMessage() {
+		return driver.findElement(RegistrationCheckBoxErrorMessage);
+	}
+
 }
 

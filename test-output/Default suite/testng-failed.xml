@@ -3,11 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestCases.RegisterTestCases">
+      <class name="TestCases.AddToCartTestCase">
         <methods>
-          <include name="verifyRegisterationWithValidData"/>
+          <include name="verifyCartAmount"/>
+          <include name="BrowserLaunchEveryTestCase"/>
+          <include name="BrowserCloseEveryTestCase"/>
+          <include name="setupReport"/>
+          <include name="endReporttest"/>
         </methods>
-      </class> <!-- TestCases.RegisterTestCases -->
+      </class> <!-- TestCases.AddToCartTestCase -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

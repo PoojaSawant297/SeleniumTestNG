@@ -10,15 +10,14 @@ public class homePageObjects {
 
 	private By myAccount = By.xpath("//a[@title='My Account']");
 	private By register = By.xpath("//a[text()='Register']");
+	private By Login = By.xpath("//a[text()='Login']");
+	private By Components = By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'Components')]");
 
-	//Add login xpath
-	
-	// create constrcutor 
+	// create constrcutor
 	public homePageObjects(WebDriver driver) {
-		this.driver=driver;
+		this.driver = driver;
 	}
 
-	
 	public WebElement clickOnMyAccount() {
 		return driver.findElement(myAccount);
 
@@ -29,6 +28,16 @@ public class homePageObjects {
 
 	}
 
-	
-	//add login method
+	public WebElement ClickOnLogin() {
+
+		return driver.findElement(Login);
+
+	}
+
+	public WebElement ClickOnComponents() {
+
+		return driver.findElement(Components);
+
+	}
+
 }

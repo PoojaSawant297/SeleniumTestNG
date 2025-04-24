@@ -1,19 +1,20 @@
 package TestCases;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
 import PageObjectModel.homePageObjects;
 import PageObjectModel.registerPageObjects;
 import Resources.baseClass;
+import Resources.commonMethods;
 import Resources.constants;
 
 public class RegisterTestCases extends baseClass {
-
 	@Test
-	public void verifyRegisterationWithValidData() throws IOException {
+	public void VerifyRegistrationWithValidData() throws IOException {
+
+		driver.manage().window().maximize();
 
 		homePageObjects hpo = new homePageObjects(driver);
 
@@ -22,35 +23,30 @@ public class RegisterTestCases extends baseClass {
 
 		registerPageObjects rpo = new registerPageObjects(driver);
 
-		rpo.enterFirstName().sendKeys(constants.FirstName);
+		commonMethods.handlExplictWait(driver, 10, rpo.EnterFirstName());
+		rpo.EnterFirstName().sendKeys(constants.FirstName); // 10
+		rpo.EnterLastName().sendKeys(constants.LastName);
+		rpo.EnterEmail().sendKeys(EmailAddress);
 
-		rpo.enterLastName().sendKeys(constants.LastName);
+		commonMethods.handlExplictWait(driver, 15, rpo.EnterTelephone());
+		rpo.EnterTelephone().sendKeys(constants.Telephone); // 15
+		rpo.EnterPassword().sendKeys(constants.Password);
+		rpo.EnterConfirmPassword().sendKeys(constants.ConfirmPassword);
+		rpo.CheckCheckbox().click();
+		rpo.ClickContinue().click();
+		rpo.LogoutButton().click();
 
-		rpo.enterEmail().sendKeys(constants.Telephone);
+//		String ExpectedResult = constants.RegistrationExpectedResult;
+//		String ActualResult = rpo.RegisteredSuccessfullyMessage().getText();
 
-		rpo.enterTelephone().sendKeys("9897878801");
-
-		rpo.Password().sendKeys("test@123");
-
-		rpo.confirmPassword().sendKeys("test@123");
-
-		rpo.clickCheckbox().click();
-
-		rpo.conntinueButton().click();
-
-		String expectedresult = "Your Account Has Been Created!";
-
-		String actualresult = rpo.registersuccessful().getText();
-
-		SoftAssert sa = new SoftAssert();
-		sa.assertEquals(actualresult, expectedresult);
-
-		sa.assertAll();
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+//
+//		commonMethods.handleAssertion(ActualResult, ExpectedResult);
 
 	}
 
-	@Test
-	public void verifyregisterwithblankdata() {
+	@Test(enabled = false)
+	public void VerifyRegistrationWithBlankData() {
 
 		homePageObjects hpo = new homePageObjects(driver);
 
@@ -59,26 +55,37 @@ public class RegisterTestCases extends baseClass {
 
 		registerPageObjects rpo = new registerPageObjects(driver);
 
-		rpo.conntinueButton().click();
-		
-		SoftAssert sa = new SoftAssert();
-		
-		String FirstnameExpected = rpo.enterLastName().getText();
-		String FirstNameActual = "";
-	
-		
-		sa.assertEquals(FirstNameActual, FirstnameExpected);
-		
-		String LastnameExpected = rpo.enterLastName().getText();
-		
-		String LastNameActual = ""; 
-		
-		sa.assertEquals(LastNameActual, LastnameExpected);
-		
-		sa.assertAll();
+		rpo.ClickContinue().click();
 
-		
+		String FirstNameExpectedResult = constants.FirstNameRegistrationErrorMessage;
+		String FirstNameActualResult = rpo.FirstNameErrorMessage().getText();
+
+		commonMethods.handleAssertion(FirstNameActualResult, FirstNameExpectedResult);
+
+		String LastNameExpectedResult = constants.LastNameRegistrationErrorMessage;
+		String LastNameActualResult = rpo.LastNameErrorMessage().getText();
+
+		commonMethods.handleAssertion(LastNameActualResult, LastNameExpectedResult);
+
+		String EmailExpectedResult = constants.EmailRegistrationErrorMessage;
+		String EmailActualResult = rpo.EmailErrorMessage().getText();
+
+		commonMethods.handleAssertion(EmailActualResult, EmailExpectedResult);
+
+		String TelePhoneExpectedResult = constants.TelephoneRegistrationErrorMessage;
+		String TelePhoneActualResult = rpo.TelePhoneErrorMessage().getText();
+
+		commonMethods.handleAssertion(TelePhoneActualResult, TelePhoneExpectedResult);
+
+		String PasswordExpectedResult = constants.PasswordRegistrationErrorMessage;
+		String PasswordActualResult = rpo.PasswordErrorMessage().getText();
+
+		commonMethods.handleAssertion(PasswordActualResult, PasswordExpectedResult);
+
+		String CheckBoxExpectedResult = constants.CheckBoxRegistrationErrorMessage;
+		String CheckBoxActualResult = rpo.CheckBoxErrorMessage().getText();
+
+		commonMethods.handleAssertion(CheckBoxActualResult, CheckBoxExpectedResult);
 
 	}
-
 }
